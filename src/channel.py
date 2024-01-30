@@ -1,11 +1,16 @@
 import json
 import os
 from googleapiclient.discovery import build
+from dotenv import load_dotenv
+from config import File_name
+
+load_dotenv(File_name)
+key = os.getenv("YOUTUBE_API")
 
 
 class Channel:
     """Класс для ютуб-канала"""
-    api_key: str = os.getenv('AIzaSyCmg4bpmunz_gUPCClaxti5ZWJqsHxNw-g')
+    api_key: str = key
 
     def __init__(self, channel_id: str) -> None:
         """Экземпляр инициализируется id канала. Дальше все данные будут подтягиваться по API."""
