@@ -23,6 +23,38 @@ class Channel:
         self.video_count = self.channel["items"][0]["statistics"]["videoCount"]
         self.view_count = self.channel["items"][0]["statistics"]["viewCount"]
 
+    def __str__(self):
+        """Выводит название и ссылку канала для пользователя """
+        return f'{self.title}({self.url})'
+
+    def __add__(self, other):
+        """Метод сложения подписчиков"""
+        return int(self.subscriber_count) + int(other.subscriber_count)
+
+    def __sub__(self, other):
+        """Метод вычитания подписчиков"""
+        return int(self.subscriber_count) - int(other.subscriber_count)
+
+    def __gt__(self, other):
+        """Метод сравнения больше подписчиков"""
+        return int(self.subscriber_count) > int(other.subscriber_count)
+
+    def __ge__(self, other):
+        """Метод сравнения больше или равно подписчиков"""
+        return int(self.subscriber_count) >= int(other.subscriber_count)
+
+    def __lt__(self, other):
+        """Метод сравнения меньше подписчиков"""
+        return int(self.subscriber_count) < int(other.subscriber_count)
+
+    def __le__(self, other):
+        """Метод сравнения меньше или равно подписчиков"""
+        return int(self.subscriber_count) <= int(other.subscriber_count)
+
+    def __eq__(self, other):
+        """Метод сравнения подписчиков"""
+        return int(self.subscriber_count) == int(other.subscriber_count)
+
     def print_info(self) -> None:
         """Выводит в консоль информацию о канале."""
         print(json.dumps(self.channel, indent=2, ensure_ascii=False))
